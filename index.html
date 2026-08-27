@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dagar College of Information Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F1A2E;
+    --navy-2:#16233D;
+    --gold:#C9A227;
+    --gold-soft:#E4C766;
+    --maroon:#7A1F2B;
+    --paper:#F5F3EC;
+    --ink:#17181C;
+    --ink-soft:#4A4E58;
+    --line:#DAD5C6;
+    --radius:2px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(15,26,46,0.97);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(201,162,39,0.25);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .crest{width:38px;height:38px;flex-shrink:0;}
+  .brand-text{color:var(--paper);}
+  .brand-text .name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;letter-spacing:0.01em;}
+  .brand-text .sub{font-family:'IBM Plex Mono',monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-soft);}
+  nav.links{display:flex;gap:30px;align-items:center;}
+  nav.links a{
+    color:#D9DCE4;font-size:0.88rem;font-weight:500;
+    position:relative;padding:4px 0;
+    transition:color .2s;
+  }
+  nav.links a:hover{color:var(--gold-soft);}
+  .nav-cta{
+    background:var(--gold);color:var(--navy)!important;
+    padding:9px 20px;border-radius:var(--radius);
+    font-weight:600;font-size:0.85rem;
+  }
+  .nav-cta:hover{background:var(--gold-soft);}
+  .burger{display:none;background:none;border:none;color:var(--paper);font-size:1.4rem;cursor:pointer;}
+  @media(max-width:860px){
+    nav.links{
+      display:none;position:absolute;top:100%;left:0;right:0;
+      background:var(--navy);flex-direction:column;padding:18px 32px 26px;
+      gap:18px;border-bottom:1px solid rgba(201,162,39,0.25);
+    }
+    nav.links.open{display:flex;}
+    .burger{display:block;}
+  }
+
+  /* ===== Hero ===== */
+  .hero{
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,162,39,0.10), transparent 55%),
+      linear-gradient(180deg,var(--navy) 0%, var(--navy-2) 100%);
+    color:var(--paper);
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;
+  }
+  @media(max-width:860px){.hero .wrap{grid-template-columns:1fr;}}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--gold-soft);
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold-soft);}
+  .hero h1{
+    font-size:clamp(2.3rem,4.6vw,3.6rem);
+    line-height:1.08;
+    margin-bottom:22px;
+  }
+  .hero h1 em{color:var(--gold-soft);font-style:italic;}
+  .hero p.lede{
+    font-size:1.08rem;color:#C3C8D4;max-width:46ch;margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:44px;}
+  .btn-primary{
+    background:var(--gold);color:var(--navy);
+    padding:14px 28px;border-radius:var(--radius);
+    font-weight:600;font-size:0.94rem;
+    display:inline-block;transition:background .2s, transform .2s;
+  }
+  .btn-primary:hover{background:var(--gold-soft);transform:translateY(-1px);}
+  .btn-ghost{
+    border:1px solid rgba(245,243,236,0.35);color:var(--paper);
+    padding:14px 28px;border-radius:var(--radius);
+    font-weight:500;font-size:0.94rem;display:inline-block;
+    transition:border-color .2s,background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--gold-soft);background:rgba(245,243,236,0.05);}
+  .hero-meta{
+    display:flex;gap:36px;flex-wrap:wrap;
+    border-top:1px solid rgba(245,243,236,0.15);
+    padding-top:26px;
+  }
+  .hero-meta .num{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--gold-soft);}
+  .hero-meta .lbl{font-size:0.74rem;color:#9CA2B0;text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;}
+
+  /* Crest / seal - signature element */
+  .seal-wrap{display:flex;justify-content:center;position:relative;}
+  .seal{position:relative;width:100%;max-width:320px;aspect-ratio:1;}
+  .seal svg{width:100%;height:100%;}
+  .seal-ring-text{
+    animation:spin 40s linear infinite;
+    transform-origin:center;
+  }
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){.seal-ring-text{animation:none;}}
+
+  /* ===== Ticker / accreditation strip ===== */
+  .strip{
+    background:var(--maroon);color:#F3E6E4;
+    padding:13px 0;overflow:hidden;
+    border-top:1px solid rgba(0,0,0,0.15);
+  }
+  .strip .wrap{
+    display:flex;gap:44px;font-family:'IBM Plex Mono',monospace;
+    font-size:0.76rem;letter-spacing:0.04em;flex-wrap:wrap;justify-content:center;
+  }
+  .strip span{opacity:0.92;}
+  .strip b{color:var(--gold-soft);}
+
+  /* ===== Section shell ===== */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:52px;}
+  .section-head .eyebrow{color:var(--maroon);}
+  .section-head .eyebrow::before{background:var(--maroon);}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);color:var(--navy);}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:1rem;}
+
+  /* ===== About ===== */
+  .about{background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:40px;}}
+  .about-art{
+    aspect-ratio:4/5;border-radius:var(--radius);
+    background:
+      repeating-linear-gradient(135deg, rgba(15,26,46,0.06) 0px, rgba(15,26,46,0.06) 2px, transparent 2px, transparent 14px),
+      linear-gradient(160deg,#0F1A2E 0%,#22355B 60%,#7A1F2B 130%);
+    position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;padding:26px;
+  }
+  .about-art .tag{
+    color:var(--gold-soft);font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    border-top:1px solid rgba(230,199,102,0.4);padding-top:12px;width:100%;
+  }
+  .about-body p{color:var(--ink-soft);margin-bottom:18px;}
+  .about-body .signature{
+    margin-top:28px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:'Fraunces',serif;font-style:italic;color:var(--navy);
+  }
+  .about-body .signature .role{
+    display:block;font-family:'Inter',sans-serif;font-style:normal;
+    font-size:0.78rem;color:var(--ink-soft);margin-top:3px;text-transform:uppercase;letter-spacing:0.05em;
+  }
+
+  /* ===== Programs / Catalog ===== */
+  .programs{background:var(--navy);color:var(--paper);}
+  .programs .section-head .eyebrow{color:var(--gold-soft);}
+  .programs .section-head .eyebrow::before{background:var(--gold-soft);}
+  .programs .section-head h2{color:var(--paper);}
+  .programs .section-head p{color:#B7BCC8;}
+  .catalog{border-top:1px solid rgba(245,243,236,0.15);}
+  .cat-row{
+    display:grid;grid-template-columns:110px 1fr 160px 28px;
+    gap:24px;align-items:center;
+    padding:26px 0;border-bottom:1px solid rgba(245,243,236,0.12);
+    transition:background .2s;
+  }
+  .cat-row:hover{background:rgba(245,243,236,0.03);}
+  @media(max-width:700px){
+    .cat-row{grid-template-columns:1fr;gap:8px;padding:22px 0;}
+    .cat-row .code{order:1;}
+    .cat-row .arrow{display:none;}
+  }
+  .cat-row .code{
+    font-family:'IBM Plex Mono',monospace;color:var(--gold-soft);font-size:0.86rem;
+  }
+  .cat-row .title{font-family:'Fraunces',serif;font-size:1.15rem;}
+  .cat-row .title .desc{
+    display:block;font-family:'Inter',sans-serif;font-size:0.88rem;color:#AEB3C0;
+    margin-top:6px;font-weight:400;
+  }
+  .cat-row .duration{font-size:0.82rem;color:#9CA2B0;font-family:'IBM Plex Mono',monospace;}
+  .cat-row .arrow{color:var(--gold-soft);font-size:1.1rem;}
+
+  /* ===== Why Dagar - feature grid ===== */
+  .features{background:var(--paper);}
+  .feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.feat-grid{grid-template-columns:1fr;}}
+  .feat{background:var(--paper);padding:34px 28px;}
+  .feat .mark{
+    width:38px;height:38px;border:1px solid var(--maroon);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--maroon);font-family:'Fraunces',serif;font-size:1rem;margin-bottom:20px;
+  }
+  .feat h3{font-size:1.05rem;color:var(--navy);margin-bottom:10px;}
+  .feat p{font-size:0.9rem;color:var(--ink-soft);}
+
+  /* ===== Outcomes / stats band ===== */
+  .outcomes{background:var(--maroon);color:#F3E6E4;padding:64px 0;}
+  .out-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center;}
+  @media(max-width:700px){.out-grid{grid-template-columns:repeat(2,1fr);gap:36px;}}
+  .out-grid .num{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--gold-soft);}
+  .out-grid .lbl{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.07em;color:#E3C9C8;margin-top:6px;}
+
+  /* ===== Admissions steps ===== */
+  .admissions{background:var(--paper);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:step;}
+  @media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr;}}
+  .step{position:relative;padding-top:14px;border-top:2px solid var(--navy);}
+  .step .n{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;}
+  .step h3{font-size:1.02rem;color:var(--navy);margin:10px 0 8px;}
+  .step p{font-size:0.88rem;color:var(--ink-soft);}
+  .admit-cta{
+    margin-top:52px;display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;background:var(--navy);color:var(--paper);
+    padding:34px 40px;border-radius:var(--radius);
+  }
+  .admit-cta h3{font-size:1.3rem;}
+  .admit-cta p{color:#B7BCC8;font-size:0.9rem;margin-top:6px;}
+
+  /* ===== Contact / footer ===== */
+  footer{background:var(--navy-2);color:#C3C8D4;padding-top:70px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;padding-bottom:50px;border-bottom:1px solid rgba(245,243,236,0.1);}
+  @media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-grid h4{
+    color:var(--gold-soft);font-size:0.74rem;text-transform:uppercase;
+    letter-spacing:0.1em;margin-bottom:16px;font-family:'IBM Plex Mono',monospace;font-weight:500;
+  }
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:10px;font-size:0.9rem;}
+  .foot-grid a:hover{color:var(--gold-soft);}
+  .foot-brand .name{font-family:'Fraunces',serif;color:var(--paper);font-size:1.2rem;margin-bottom:10px;}
+  .foot-brand p{font-size:0.88rem;max-width:32ch;color:#9CA2B0;}
+  .foot-bottom{
+    padding:24px 0;display:flex;justify-content:space-between;
+    font-size:0.78rem;color:#7C8190;flex-wrap:wrap;gap:10px;
+  }
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="crest" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" stroke="#C9A227" stroke-width="1.5"/>
+        <circle cx="24" cy="24" r="17" stroke="#C9A227" stroke-width="1"/>
+        <path d="M24 12 L28 22 L24 20 L20 22 Z" fill="#C9A227"/>
+        <text x="24" y="33" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#F5F3EC">DCIT</text>
+      </svg>
+      <div class="brand-text">
+        <div class="name">Dagar College of IT</div>
+        <div class="sub">Est. 1994 &middot; NAAC A+</div>
+      </div>
+    </div>
+    <button class="burger" id="burger" aria-label="Toggle menu">&#9776;</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#campus">Campus Life</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#contact">Contact</a>
+      <a href="#admissions" class="nav-cta">Apply Now</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Est. 1994 &nbsp;/&nbsp; Affiliated to State Technical University</div>
+      <h1>Engineers of tomorrow, <em>disciplined</em> in the fundamentals of today.</h1>
+      <p class="lede">Dagar College of Information Technology trains students in computer science, data engineering and applied technology through rigorous coursework, active labs and industry-linked placements.</p>
+      <div class="hero-ctas">
+        <a href="#admissions" class="btn-primary">Apply for 2026&ndash;27</a>
+        <a href="#programs" class="btn-ghost">View Programs</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="num">31</div><div class="lbl">Years of Instruction</div></div>
+        <div><div class="num">4,200+</div><div class="lbl">Students Enrolled</div></div>
+        <div><div class="num">92%</div><div class="lbl">Placement Rate</div></div>
+        <div><div class="num">140+</div><div class="lbl">Recruiting Partners</div></div>
+      </div>
+    </div>
+    <div class="seal-wrap">
+      <div class="seal">
+        <svg viewBox="0 0 300 300">
+          <circle cx="150" cy="150" r="145" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.5"/>
+          <circle cx="150" cy="150" r="120" fill="none" stroke="#C9A227" stroke-width="1" opacity="0.7"/>
+          <g class="seal-ring-text">
+            <path id="ringPath" fill="none" d="M150,150 m-105,0 a105,105 0 1,1 210,0 a105,105 0 1,1 -210,0"/>
+            <text font-family="IBM Plex Mono" font-size="10.5" fill="#E4C766" letter-spacing="3">
+              <textPath href="#ringPath" startOffset="0%">DAGAR COLLEGE OF INFORMATION TECHNOLOGY &middot; FOUNDED 1994 &middot; DISCE ET PROGREDERE &middot; </textPath>
+            </text>
+          </g>
+          <circle cx="150" cy="150" r="78" fill="#0F1A2E" stroke="#C9A227" stroke-width="1.5"/>
+          <path d="M150 92 L166 128 L204 132 L176 158 L184 196 L150 176 L116 196 L124 158 L96 132 L134 128 Z"
+                fill="none" stroke="#E4C766" stroke-width="1.4"/>
+          <text x="150" y="156" text-anchor="middle" font-family="Fraunces" font-size="15" fill="#F5F3EC">DCIT</text>
+          <text x="150" y="172" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="#B9975B" letter-spacing="2">1994</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>NAAC</b> A+ Accredited</span>
+    <span><b>NBA</b> Tier&nbsp;I Programs</span>
+    <span><b>ISO</b> 9001:2015 Certified</span>
+    <span><b>AICTE</b> Approved Institution</span>
+    <span><b>UGC</b> Recognised, Section 2(f)</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">About the College</div>
+      <h2>Built on discipline, kept current by industry.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-art reveal">
+        <div class="tag">Founder's Block &middot; Main Campus, Est. 1994</div>
+      </div>
+      <div class="about-body reveal">
+        <p>Dagar College of Information Technology was founded in 1994 with a single purpose: to train engineers who are as strong in fundamentals as they are fluent in current technology. What began as a two-department institution now runs eight undergraduate and postgraduate programs across computing, data and information systems.</p>
+        <p>Our classrooms run on a simple principle — theory is taught alongside its application. Every core course carries a lab component, every final year carries an industry project, and every department maintains direct ties with recruiting partners who shape our curriculum reviews each year.</p>
+        <p>The result is a college that measures itself less by rankings and more by where its graduates are five years after they leave.</p>
+        <div class="signature">
+          Dr. R. Dagar
+          <span class="role">Founder &amp; Chairperson, Governing Council</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Academic Catalog</div>
+      <h2>Programs offered</h2>
+      <p>Each program is listed with its official course code, as recorded in the university affiliation registry.</p>
+    </div>
+    <div class="catalog">
+      <div class="cat-row reveal">
+        <div class="code">B.TECH&nbsp;CSE</div>
+        <div class="title">Computer Science &amp; Engineering<span class="desc">Core CS theory, systems programming, and a mandatory 6-month industry internship.</span></div>
+        <div class="duration">4 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+      <div class="cat-row reveal">
+        <div class="code">B.TECH&nbsp;DS</div>
+        <div class="title">Data Science &amp; Engineering<span class="desc">Statistics, distributed data systems, and applied machine learning studios.</span></div>
+        <div class="duration">4 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+      <div class="cat-row reveal">
+        <div class="code">BCA</div>
+        <div class="title">Bachelor of Computer Applications<span class="desc">Application development, database systems, and enterprise software practice.</span></div>
+        <div class="duration">3 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+      <div class="cat-row reveal">
+        <div class="code">MCA</div>
+        <div class="title">Master of Computer Applications<span class="desc">Advanced systems design, research methods, and a thesis-track final semester.</span></div>
+        <div class="duration">2 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+      <div class="cat-row reveal">
+        <div class="code">B.TECH&nbsp;IT</div>
+        <div class="title">Information Technology<span class="desc">Networks, cloud infrastructure, and enterprise security fundamentals.</span></div>
+        <div class="duration">4 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+      <div class="cat-row reveal">
+        <div class="code">M.SC&nbsp;CS</div>
+        <div class="title">Computer Science (Research Track)<span class="desc">Faculty-supervised research in algorithms, systems, or applied AI.</span></div>
+        <div class="duration">2 Years &middot; Full-time</div>
+        <div class="arrow">&rarr;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="campus">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Campus Life</div>
+      <h2>What keeps students here past the last lecture.</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="feat-grid reveal">
+      <div class="feat">
+        <div class="mark">01</div>
+        <h3>Systems &amp; Networking Labs</h3>
+        <p>Twelve dedicated labs with 24-hour card access for final-year project teams.</p>
+      </div>
+      <div class="feat">
+        <div class="mark">02</div>
+        <h3>Central Library</h3>
+        <p>60,000+ volumes, IEEE and ACM digital access, and silent research floors.</p>
+      </div>
+      <div class="feat">
+        <div class="mark">03</div>
+        <h3>Placement Cell</h3>
+        <p>Dedicated coordinators per department, running through final year.</p>
+      </div>
+      <div class="feat">
+        <div class="mark">04</div>
+        <h3>Residential Hostels</h3>
+        <p>Separate blocks for men and women, walking distance from academic blocks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="outcomes">
+  <div class="wrap">
+    <div class="out-grid reveal">
+      <div><div class="num">92%</div><div class="lbl">Placed within 6 months</div></div>
+      <div><div class="num">&#8377;9.4L</div><div class="lbl">Highest Package (2026)</div></div>
+      <div><div class="num">140+</div><div class="lbl">Recruiting Companies</div></div>
+      <div><div class="num">3,600+</div><div class="lbl">Alumni in Industry</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="admissions" id="admissions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Admissions 2026&ndash;27</div>
+      <h2>How to apply</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="n">STEP 01</div>
+        <h3>Submit application</h3>
+        <p>Complete the online form with your academic records and program preference.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 02</div>
+        <h3>Entrance assessment</h3>
+        <p>Sit for the Dagar Aptitude Test (DCAT) at your nearest test centre.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 03</div>
+        <h3>Counselling round</h3>
+        <p>Attend counselling for seat allotment based on merit and preference.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 04</div>
+        <h3>Confirm admission</h3>
+        <p>Pay the admission fee and submit originals to secure your seat.</p>
+      </div>
+    </div>
+    <div class="admit-cta reveal">
+      <div>
+        <h3>Applications close 30 August 2026</h3>
+        <p>Limited seats remain across B.Tech CSE, Data Science and BCA.</p>
+      </div>
+      <a href="#contact" class="btn-primary">Start Application</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">Dagar College of IT</div>
+        <p>An AICTE-approved institution for computing and information technology education since 1994.</p>
+      </div>
+      <div>
+        <h4>Campus</h4>
+        <ul>
+          <li>Dagar Educational Complex</li>
+          <li>Sector 21, Institutional Area</li>
+          <li>Panchkula, Haryana 134109</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+911724567890">+91 172 456 7890</a></li>
+          <li><a href="mailto:admissions@dagarcollege.edu.in">admissions@dagarcollege.edu.in</a></li>
+          <li>Mon&ndash;Sat, 9:00&ndash;17:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#programs">Academic Catalog</a></li>
+          <li><a href="#campus">Campus Life</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Dagar College of Information Technology. All rights reserved.</span>
+      <span>Affiliated to State Technical University &middot; AICTE Approved</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat with Mansi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --plum: #2B1B2E;
+    --plum-deep: #1D1220;
+    --gold: #E8B04B;
+    --gold-soft: #F3D28B;
+    --cream: #F5EFE6;
+    --cream-dim: #CFC3C9;
+    --bubble-user: #3D2A41;
+    --success: #6FAE8A;
+  }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:'Inter',sans-serif; }
+
+  /* ---------- Floating Launcher ---------- */
+  #mansi-launcher{
+    position:fixed; bottom:24px; right:24px; z-index:9999;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(145deg,var(--gold),#C98A2E);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 24px rgba(43,27,46,0.35);
+    cursor:pointer; border:none; transition:transform .2s ease;
+  }
+  #mansi-launcher:hover{ transform:scale(1.06); }
+  #mansi-launcher svg{ width:28px; height:28px; }
+  #mansi-launcher .dot{
+    position:absolute; top:6px; right:6px; width:12px; height:12px;
+    background:var(--success); border-radius:50%; border:2px solid var(--plum-deep);
+  }
+
+  /* ---------- Chat Panel ---------- */
+  #mansi-panel{
+    position:fixed; bottom:100px; right:24px; z-index:9999;
+    width:360px; max-width:calc(100vw - 32px);
+    height:520px; max-height:calc(100vh - 140px);
+    background:var(--plum);
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
+    display:none; flex-direction:column; overflow:hidden;
+    transform:translateY(12px); opacity:0;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  #mansi-panel.open{ display:flex; transform:translateY(0); opacity:1; }
+
+  #mansi-header{
+    background:var(--plum-deep);
+    padding:18px 20px;
+    display:flex; align-items:center; gap:12px;
+    border-bottom:1px solid rgba(232,176,75,0.15);
+  }
+  #mansi-avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:linear-gradient(145deg,var(--gold),#C98A2E);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:700; color:var(--plum-deep); font-size:17px;
+    flex-shrink:0;
+  }
+  #mansi-header-text h1{
+    margin:0; font-family:'Fraunces',serif; font-weight:600; font-size:17px; color:var(--cream);
+  }
+  #mansi-header-text p{
+    margin:2px 0 0; font-size:12px; color:var(--success); display:flex; align-items:center; gap:5px;
+  }
+  #mansi-header-text p::before{
+    content:''; width:6px; height:6px; border-radius:50%; background:var(--success); display:inline-block;
+  }
+  #mansi-close{
+    margin-left:auto; background:none; border:none; cursor:pointer;
+    color:var(--cream-dim); font-size:20px; line-height:1; padding:4px;
+  }
+  #mansi-close:hover{ color:var(--cream); }
+
+  #mansi-messages{
+    flex:1; overflow-y:auto; padding:18px 16px;
+    display:flex; flex-direction:column; gap:12px;
+    background:var(--plum);
+  }
+  .mansi-msg{
+    max-width:82%; padding:10px 14px; border-radius:14px;
+    font-size:14px; line-height:1.5; white-space:pre-wrap; word-wrap:break-word;
+  }
+  .mansi-msg.bot{
+    align-self:flex-start; background:var(--bubble-user); color:var(--cream);
+    border-bottom-left-radius:4px;
+  }
+  .mansi-msg.user{
+    align-self:flex-end; background:var(--gold-soft); color:var(--plum-deep);
+    border-bottom-right-radius:4px;
+  }
+  .mansi-typing{
+    align-self:flex-start; display:flex; gap:4px; padding:12px 14px;
+    background:var(--bubble-user); border-radius:14px; border-bottom-left-radius:4px;
+  }
+  .mansi-typing span{
+    width:6px; height:6px; border-radius:50%; background:var(--gold-soft);
+    animation:mansi-bounce 1.2s infinite ease-in-out;
+  }
+  .mansi-typing span:nth-child(2){ animation-delay:.15s; }
+  .mansi-typing span:nth-child(3){ animation-delay:.3s; }
+  @keyframes mansi-bounce{ 0%,60%,100%{ transform:translateY(0); opacity:.5; } 30%{ transform:translateY(-5px); opacity:1; } }
+
+  #mansi-inputbar{
+    display:flex; gap:8px; padding:12px; background:var(--plum-deep);
+    border-top:1px solid rgba(232,176,75,0.15);
+  }
+  #mansi-input{
+    flex:1; resize:none; border:none; outline:none; border-radius:10px;
+    padding:10px 12px; font-family:'Inter',sans-serif; font-size:14px;
+    background:#3A2740; color:var(--cream); max-height:80px;
+  }
+  #mansi-input::placeholder{ color:var(--cream-dim); }
+  #mansi-send{
+    background:var(--gold); border:none; border-radius:10px; width:42px; flex-shrink:0;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .15s ease;
+  }
+  #mansi-send:hover{ background:var(--gold-soft); }
+  #mansi-send:disabled{ opacity:.5; cursor:default; }
+  #mansi-send svg{ width:18px; height:18px; }
+
+  @media (prefers-reduced-motion: reduce){
+    #mansi-launcher, #mansi-panel, .mansi-typing span{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Launcher button -->
+<button id="mansi-launcher" aria-label="Open chat with Mansi">
+  <span class="dot"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="#2B1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+  </svg>
+</button>
+
+<!-- Chat panel -->
+<div id="mansi-panel">
+  <div id="mansi-header">
+    <div id="mansi-avatar">M</div>
+    <div id="mansi-header-text">
+      <h1>Chat with Mansi</h1>
+      <p>Online now</p>
+    </div>
+    <button id="mansi-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="mansi-messages"></div>
+  <div id="mansi-inputbar">
+    <textarea id="mansi-input" rows="1" placeholder="Ask Mansi anything..."></textarea>
+    <button id="mansi-send" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2B1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const launcher = document.getElementById('mansi-launcher');
+  const panel = document.getElementById('mansi-panel');
+  const closeBtn = document.getElementById('mansi-close');
+  const messagesEl = document.getElementById('mansi-messages');
+  const input = document.getElementById('mansi-input');
+  const sendBtn = document.getElementById('mansi-send');
+
+  // ---- Customize this to describe your website / business ----
+  const SITE_CONTEXT = `You are Mansi, a friendly and knowledgeable customer support assistant for this website.
+Answer visitor questions clearly and concisely. If you don't know something specific about
+the business (like exact prices, stock, or policies), say so honestly and suggest the
+visitor contact the team directly for specifics. Keep replies conversational and short
+(2-4 sentences) unless the question needs more detail.`;
+
+  let history = [];
+  let isSending = false;
+
+  function addMessage(role, text){
+    const div = document.createElement('div');
+    div.className = 'mansi-msg ' + (role === 'user' ? 'user' : 'bot');
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function showTyping(){
+    const div = document.createElement('div');
+    div.className = 'mansi-typing';
+    div.id = 'mansi-typing-indicator';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+  function hideTyping(){
+    const el = document.getElementById('mansi-typing-indicator');
+    if(el) el.remove();
+  }
+
+  function openPanel(){
+    panel.classList.add('open');
+    if(messagesEl.children.length === 0){
+      addMessage('bot', "Hi, I'm Mansi! 👋 What can I help you with today?");
+    }
+    input.focus();
+  }
+  function closePanel(){ panel.classList.remove('open'); }
+
+  launcher.addEventListener('click', () => {
+    panel.classList.contains('open') ? closePanel() : openPanel();
+  });
+  closeBtn.addEventListener('click', closePanel);
+
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 80) + 'px';
+  });
+  input.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' && !e.shiftKey){
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  sendBtn.addEventListener('click', sendMessage);
+
+  async function sendMessage(){
+    const text = input.value.trim();
+    if(!text || isSending) return;
+
+    addMessage('user', text);
+    history.push({ role: 'user', content: text });
+    input.value = '';
+    input.style.height = 'auto';
+    isSending = true;
+    sendBtn.disabled = true;
+    showTyping();
+
+    try{
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1000,
+          system: SITE_CONTEXT,
+          messages: history
+        })
+      });
+      const data = await response.json();
+      hideTyping();
+
+      const reply = (data.content || [])
+        .map(block => block.type === 'text' ? block.text : '')
+        .filter(Boolean)
+        .join('\n') || "Sorry, I didn't quite catch that — could you rephrase?";
+
+      addMessage('bot', reply);
+      history.push({ role: 'assistant', content: reply });
+    }catch(err){
+      hideTyping();
+      addMessage('bot', "Hmm, I'm having trouble connecting right now. Please try again in a moment.");
+      console.error('Mansi chat error:', err);
+    }finally{
+      isSending = false;
+      sendBtn.disabled = false;
+    }
+  }
+})();
+</script>
+</body>
+</html>
+
